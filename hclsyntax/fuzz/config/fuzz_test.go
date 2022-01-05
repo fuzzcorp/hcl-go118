@@ -18,3 +18,16 @@ func FuzzSyntaxParseConfig(f *testing.F) {
 		return
 	})
 }
+
+func FuzzSyntaxExpr(f *testing.F) {
+	f.Fuzz(func(t *testing.T, data []byte) {
+		_, diags := hclsyntax.ParseConfig(data, "<fuzz-conf>", hcl.Pos{Line: 1, Column: 1})
+
+		if diags.HasErrors() {
+			return
+		}
+
+		return
+	})
+}
+
